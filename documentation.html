@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>TinyBB 1.4 Documentation</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<style type="text/css">
+<!--
+body {
+  font: 13px Verdana, Arial, Helvetica, sans-serif;
+  background: #81B5E9;
+  background: #feffff url(images/bg.jpg) top repeat-x;
+  background-repeat:repeat-x;;
+  margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+  padding: 0;
+  text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+  color: #000000;
+}
+.thrColLiq #container {
+  width: 80%;  /* this will create a container 80% of the browser width */
+  background: #FFFFFF;
+  margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+  border: 1px solid #6E6E6E;
+  text-align: left; /* this overrides the text-align: center on the body element. */
+}
+/* Tips for sidebars:
+1. Since we are working in percentages, it's best not to use side padding on the sidebars. It will be added to the width for standards compliant browsers creating an unknown actual width. 
+2. Space between the side of the div and the elements within it can be created by placing a left and right margin on those elements as seen in the ".thrColLiq #sidebar1 p" rule.
+3. Since Explorer calculates widths after the parent element is rendered, you may occasionally run into unexplained bugs with percentage-based columns. If you need more predictable results, you may choose to change to pixel sized columns.
+*/
+.thrColLiq #sidebar1 {
+  float: left; /* this element must precede in the source order any element you would like it be positioned next to */
+  width: 22%; /* since this element is floated, a width must be given */
+  background: #EBEBEB; /* the background color will be displayed for the length of the content in the column, but no further */
+  padding: 15px 0; /* top and bottom padding create visual space within this div  */
+}
+.thrColLiq #sidebar2 {
+  float: right; /* this element must precede in the source order any element you would like it be positioned next to */
+  width: 23%; /* since this element is floated, a width must be given */
+  background: #EBEBEB; /* the background color will be displayed for the length of the content in the column, but no further */
+  padding: 15px 0; /* top and bottom padding create visual space within this div  */
+}
+.thrColLiq #sidebar1 p, .thrColLiq #sidebar1 h3, .thrColLiq #sidebar2 p, .thrColLiq #sidebar2 h3 {
+  margin-left: 10px; /* the left and right margin should be given to every element that will be placed in the side columns */
+  margin-right: 10px;
+}
+/* Tips for mainContent:
+1. the space between the mainContent and sidebars is created with the left and right margins on the mainContent div.
+2. to avoid float drop at a supported minimum 800 x 600 resolution, elements within the mainContent div should be 300px or smaller (this includes images).
+3. in the Internet Explorer Conditional Comment below, the zoom property is used to give the mainContent "hasLayout." This avoids several IE-specific bugs.
+*/
+.thrColLiq #mainContent {
+  margin: 0 24% 0 23.5%; /* the right and left margins on this div element creates the two outer columns on the sides of the page. No matter how much content the sidebar divs contain, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the sidebar spaces when the content in each sidebar ends. */
+}
+/* Miscellaneous classes for reuse */
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+  float: right;
+  margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page The floated element must precede the element it should be next to on the page. */
+  float: left;
+  margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain its child floats */
+  clear: both;
+  height: 0;
+  font-size: 1px;
+  line-height: 0px;
+}
+.footer {
+	color: #CCC;
+}
+
+.admin {
+font-size:12px;
+text-align:left;
+padding:10px;
+background-image:url('style/thread_header.png');
+color:#ffffff;
+}
+.admin {
+color: #ffffff;
+background-image:url('style/thread_header.png');
+}
+-->
+</style><!--[if IE]>
+<style type="text/css"> 
+/* place css fixes for all versions of IE in this conditional comment */
+.thrColLiq #sidebar2, .thrColLiq #sidebar1 { padding-top: 30px; }
+.thrColLiq #mainContent { zoom: 1; padding-top: 15px; }
+/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
+</style>
+<![endif]--></head>
+
+<body class="thrColLiq">
+<br />
+<div id="container">
+<div class="admin"><strong>TinyBB 1.4.2 Documentation</strong><span style="float:right;"><a href="http://tinybb.net"><span style="color:#ffffff; font-weight:bold;">TinyBB</span></a></span></div>
+  <div id="sidebar1">
+    <h3>Release Infomation</h3>
+    <p>TinyBB 1.4.2 released by TinyBB</p>
+    <h3>Changes in 1.4</h3>
+    <p>root/admin.php<br />
+      inc/viewthread.php<br />
+      inc/list.php<br />
+      inc/list2.php<br />
+      inc/categories.php<br /></p>
+    <p>Upgrades may prove to be difficult if you've made large edits to the software.<br />
+    <p>If you're upgrading and have a custom style, do not overwrite index.php, no files are modified on index.php!</p>
+    <p>Also, please make sure no files we've edited conflict with modified files.</p>
+    <p></p>
+<p>&nbsp;</p>
+    <!-- end #sidebar1 --></div>
+  <div id="sidebar2" style="padding-left:10px;">
+    <h3>Thanks &amp; Resources</h3>
+    <p>Thanks to our <a href="http://tinybb.net/?site=donate">donators</a>, and thanks to everyone who's contributed to our <a href="http://tinybb.net/forum/?page=mods">modifications database</a>.
+    <br /><br />
+    </p>
+</div>
+  <div id="mainContent">
+    <h1> Documentation</h1>
+    <h2>Installation Instructions</h2>
+    <p>
+      To install TinyBB 1.4, upload all of the files to your web server, then access your phpMyAdmin, create a database and import &quot;TinyBB Database.sql&quot;. After this, you can edit your config.php file located in the forum root directory and edit your database details.
+      <br />
+      <br />
+      Settings such as your bulletin board title can be editied using the administration panel.
+    </p>
+    <h2>Default Login Information</h2>
+    <p>Username: admin<br />
+      Password: tinybb123<br />
+      <br />
+    It's best to change the password after logging in for security reasons.</p>
+    <h2>Editing Themes </h2>
+    <p>Theme editing is fairly simple,  to edit the main theme, edit index.php (root directory) and style/style.css. </p>
+<h2>Modification Installation</h2>
+    <p>Most official mods from TinyBB.net will contain a detailed documentation file to help you install the modification, however most are simple with a 1 line template edit and a file upload to forum/mods</p>
+    <h2>User Ranks</h2>
+    <p>In this version (1.4) there are 3 groups, Member &amp; Admin, Moderator and user level 3 for banned. If you're setting a user to admin via the database, the admin ID they need is 1, 2 will be for moderators however they have no priverlages at this time.</p>
+    </p>
+    <p>&nbsp;</p>
+  <!-- end #mainContent --></div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+  <!-- end #container --></div>
+<span class="footer" style="color:#6E6E6E;"><br />
+TinyBB all rights reserved<br />
+TinyBB is property of Jake Steele all rights reserved
+</span>
+<br />
+<br />
+</body>
+</html>

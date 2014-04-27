@@ -1,0 +1,2 @@
+<meta http-equiv='Refresh' content='2; URL=?page=login'/>
+<center><img src="icons/loading.gif" border="0"><br />Registration complete, if you are not redirected within 5 seconds, <a href="?page=login">Click Here</a>.</center>
