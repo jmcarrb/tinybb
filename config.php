@@ -1,10 +1,13 @@
 <?php
-###################
-// TinyBB 1.0 - www.TinyBB.net
-// Jake Steele 
-###################
-ob_start();session_start();
-@include("inc/version_checker.php");
+/*
+ * TinyBB 1.4.2
+ * Please do not edit this unless you are asked
+ */
+
+ob_start();
+session_start();
+
+require_once "inc/version_checker.php";
 $dcm = $_GET['vc'];
 $hostname = "localhost";
 $data_username = "root"; //database username
