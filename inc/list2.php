@@ -14,8 +14,8 @@
     elseif ($page == "news"){ include("inc/news.php"); }
     else {  ?>
 
-    <?php if (($bbsetting[tinybb_guest_access] == "0") && ($user[username] == null)){ echo "<center><span style='color:red; font-weight:bold;'>Guests are not allowed to browse $bbtitle</span></center>"; include("login.php"); } else { ?>
-    <?php if (($bbsetting[tinybb_maintenance] == "0") && (!$user[admin] == "1")){ echo "<table id='forum'><th style=\"background-image:url('style/thread_header.png')\">Forum Maintenance</th><tr><td>$bbsetting[tinybb_maintenance_message]</td></tr></table>"; } else { ?>
+    <?php if (($bbsetting['tinybb_guest_access'] == "0") && ($user['username'] == null)){ echo "<center><span style='color:red; font-weight:bold;'>Guests are not allowed to browse $bbtitle</span></center>"; include("login.php"); } else { ?>
+    <?php if (($bbsetting['tinybb_maintenance'] == "0") && (!$user['admin'] == "1")){ echo "<table id='forum'><th style=\"background-image:url('style/thread_header.png')\">Forum Maintenance</th><tr><td>$bbsetting[tinybb_maintenance_message]</td></tr></table>"; } else { ?>
 
 <style>
 .paginate {
@@ -62,10 +62,10 @@ font-family:Arial, Helvetica, sans-serif;
 
 	$query = "SELECT COUNT(*) as num FROM $tableName";
 	$total_pages = mysql_fetch_array(mysql_query($query));
-	$total_pages = $total_pages[num];
+	$total_pages = $total_pages['num'];
 	
 	$stages = 3;
-	$page = mysql_escape_string($_GET['page']);
+	$page = (isset($_GET['page'])) ? mysql_escape_string($_GET['page']) : 1;
 	if($page){
 		$start = ($page - 1) * $limit; 
 	}else{
@@ -185,7 +185,7 @@ font-family:Arial, Helvetica, sans-serif;
                   ?>
                             
                             <tr>
-                            <td align="center"><?php if ($row[cat_icon] == null){ echo "<img src='icons/none.gif' border='0'>"; } else { ?><img src='<?php echo "$row[cat_icon]"; ?>' border='0'><?php } ?></td>
+                            <td align="center"><?php if ($row['cat_icon'] == null){ echo "<img src='icons/none.gif' border='0'>"; } else { ?><img src='<?php echo "$row[cat_icon]"; ?>' border='0'><?php } ?></td>
                             <td style="max-width:150px;"><a href="?page=cat&cati=<?php echo "$row[cat_id]"; ?>"><?php echo "$row[cat_title]"; ?></a><br /><span style="font-size:10px;"><?php echo "$row[cat_desc]"; ?></span></td>
                             
                             <td align="center">
@@ -193,7 +193,7 @@ font-family:Arial, Helvetica, sans-serif;
                                  $sql2 = "SELECT * FROM tinybb_threads WHERE cat_id = '$row[cat_id]' ORDER BY aid DESC LIMIT 1";
                                  $tt = mysql_query($sql2) or die (mysql_error());
                                  while($p=mysql_fetch_assoc($tt)){
-                                 $author = stripslashes($p[thread_title]);
+                                 $author = stripslashes($p['thread_title']);
                                  echo "<a href=\"?page=thread&post=".$p['thread_key']."\">$author</a>";
                                  ?>
                                 <?php
@@ -230,7 +230,7 @@ font-family:Arial, Helvetica, sans-serif;
                   </table>
 <center>
 <br /><br />
-<?php if ($bbsetting[tinybb_stats] == "1"){ ?>
+<?php if ($bbsetting['tinybb_stats'] == "1"){ ?>
 <table id="forum">
 <th style="background-image:url('style/thread_header.png');">Statistics</th>
 <tr><td>
@@ -249,10 +249,10 @@ if($total_users == 0){ //see if anyone is logged in
         }else{ //or.... 
             $comma = ''; //if there isn't theres no comma 
         } //end check 
-        if ($online[admin] == 1){ 
+        if ($online['admin'] == 1){ 
           echo "<a href='index.php?page=profile&id=$online[username]'><span style='color:red'>$online[username]</span></a>$comma"; //echo the online users with the comma
         }
-        elseif ($online[admin] == "mod"){
+        elseif ($online['admin'] == "mod"){
           echo "<a href='index.php?page=profile&id=$online[username]'><span style='color:green'>$online[username]</span></a>$comma"; //echo the online users with the comma
         }
         else {

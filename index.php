@@ -15,7 +15,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 <link rel="stylesheet" type="text/css" href="style/pagination.css" />
-<title><?php echo "$bbsetting[tinybb_title]"; ?></title>
+<title><?php echo $bbsetting['tinybb_title']; ?></title>
 </head>
 <body>
 
@@ -25,13 +25,13 @@
 
 <div class="menu">
 <ul>
-<?php if ($user[username] == ""){ ?>
+<?php if ($user['username'] == ""){ ?>
 <li><a href="?page=login">Login</a></li>
 <li><a href="?page=register">Register</a></li>
 <?php } else { ?>
 <li><a href="?page=editaccount">My Account</a></li>
-<li><a href="?page=profile&id=<?php echo "$user[username]"; ?>">My Profile</a></li>
-<?php if ($user[admin] == "1"){ echo "<li><a href='admin.php' style='font-weight:bold;'>Administration</a></li>"; } ?>
+<li><a href="?page=profile&id=<?php echo htmlspecialchars($user['username']); ?>">My Profile</a></li>
+<?php if ($user['admin'] == "1"){ echo "<li><a href='admin.php' style='font-weight:bold;'>Administration</a></li>"; } ?>
 <?php } ?>
 </ul>
 </div>
@@ -42,11 +42,11 @@
 </div>
 
 <div id="content">
-<?php if ((!$bbsetting[tinybb_maintenance] == "1") && ($user[admin] == "1")){
+<?php if ((!$bbsetting['tinybb_maintenance'] == "1") && ($user['admin'] == "1")){
   echo "<div class='warning' align'center'>The forum currently has maintenance mode enabled. To disable it, edit your <a href='admin.php?list=settings'>Forum Settings</a>.</div>";
 }
 ?>
-<?php if ($bbsetting[tinybb_categories] == "0"){
+<?php if ($bbsetting['tinybb_categories'] == "0"){
   include("inc/list.php"); }
   else {
   include("inc/list2.php");
@@ -62,7 +62,8 @@
 
 <p align="center">
 <?php echo "$footer"; ?>
-<?php if ($user[admin] == "1"){ echo "<a href='admin.php'>Administration</a> | "; } ?><?php if (($user[admin] == "mod") || ($user[admin] == "1")){ echo "<a href='mod.php'>Moderation</a> | "; } ?> <?php if ($user[username] == ""){ } else { ?><a href="?page=logout">Logout</a><?php } ?>
+<?php 
+if ($user['admin'] == "1"){ echo "<a href='admin.php'>Administration</a> | "; } ?><?php if (($user['admin'] == "mod") || ($user['admin'] == "1")){ echo "<a href='mod.php'>Moderation</a> | "; } ?> <?php if ($user['username'] !== ""){ ?><a href="?page=logout">Logout</a><?php } ?>
 </p>
 
 

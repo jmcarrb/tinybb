@@ -203,7 +203,7 @@ td.field {
 }
 #forum
 {
-font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+font-family:Verdana, Arial, Helvetica, sans-serif;
 width:740px;
 overflow:auto;
 border-collapse:collapse;
@@ -276,7 +276,7 @@ body {
 }
 
 body, a, td, th, input, textarea, select {
-	font-family: Arial;
+	font-family: Verdana;
 	font-size: 12px;
 	color: #444;
 	text-decoration: none;

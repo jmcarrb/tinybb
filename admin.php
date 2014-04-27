@@ -549,8 +549,8 @@ background-image:url('style/thread_header.png');
                   <?php if ($_GET['do'] == "update"){ ?>
          
          <?php
-          $author2 = addslashes(htmlspecialchars($_POST[author]));
-          $content2 = addslashes(htmlspecialchars($_POST[content]));
+          $author2 = addslashes(htmlspecialchars($_POST['author']));
+          $content2 = mysql_real_escape_string($_POST['content']);
           $id = $_POST['id'];
           $update = mysql_query("UPDATE `tinybb_replies` SET
           `reply_author` = '$author2',

@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `tinybb_threads` (
 --
 
 INSERT INTO `tinybb_threads` (`thread_title`, `thread_author`, `thread_content`, `thread_key`, `thread_lock`, `date`, `aid`, `cat_id`) VALUES
-('Welcome to TinyBB 1.4', 'admin', 'Welcome to your new TinyBB 1.4 installation.\r\n\r\n----\r\nVersion release notes: 1.4.2 - This release fixes category listing IDs and thread listing ids\r\nDevelopers: Jake Steele; Tyler Brenlich\r\nVersion Data: Fixes Listing Errors', '444709648', '', '16-02-2011', 189, 1);
+('Welcome to TinyBB 1.4.3', 'admin', 'Welcome to your new TinyBB 1.4.3 installation.\r\n\r\n----\r\nVersion release notes: 1.4.3 - This release fixes some constant errors\r\nDevelopers: jmcarrb\r\nVersion Data: Fixes Constant Errors', '444709648', '', '16-02-2011', 189, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

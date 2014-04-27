@@ -1,6 +1,6 @@
 <?php
       if (!$_GET['post']){ } else {
-        $clean_get = clean($_GET[post]);
+        $clean_get = clean($_GET['post']);
       $check_thread = mysql_query("SELECT * FROM `tinybb_threads` WHERE `thread_key` = '$clean_get'") or die(mysql_error());
       if(mysql_num_rows($check_thread) == 0){
         die("<h2><img src='icons/idea.gif' border='0'> Boom! Error...</h2>The thread doesn't exist...");
@@ -30,7 +30,7 @@ myField.value += myValue;
 // Jake Steele 
 ###################
  ?>
-<?php if ((!$allowguests == "0") && ($user[username] == null)){ echo "<center><span style='color:red; font-weight:bold;'>Guests are not allowed to browse $bbtitle</span></center>"; include("login.php"); } else { ?>
+<?php if (@(!$allowguests == "0") && ($user['username'] == null)){ echo "<center><span style='color:red; font-weight:bold;'>Guests are not allowed to browse $bbtitle</span></center>"; include("login.php"); } else { ?>
          <?php
          $codes = array(
 		'[b]' => '<span style="font-weight:bold">',
@@ -76,16 +76,16 @@ myField.value += myValue;
          ?>
          <table id="forum" width="100%" style="overflow: auto;">
          <th style="background-image:url('style/thread_header.png');" width="100px;">
-                  <?php if ($user[admin] == "1"){ ?>
+                  <?php if ($user['admin'] == "1"){ ?>
          <a href="admin.php?delete&thread=<?php echo "$row[thread_key]"; ?>"><img src="icons/delete.gif" border="0"></a>
          <a href="admin.php?list=edit&type=thread&thread=<?php echo "$row[thread_key]"; ?>"><img src="icons/edit_post.png" border="0"></a>
-         <?php if ($row[thread_lock] == "1"){ ?>
+         <?php if ($row['thread_lock'] == "1"){ ?>
          <a href="admin.php?lock&lock=2&thread=<?php echo "$row[thread_key]"; ?>"><img src="icons/unlock.gif" border="0"></a>
          <?php } else { ?>
          <a href="admin.php?lock&lock=1&thread=<?php echo "$row[thread_key]"; ?>"><img src="icons/lock.gif" border="0"></a>
          <?php } } ?>
-         <?php if (!$user[admin] == "1"){ echo "Thread"; } ?></th>
-         <th style="background-image:url('style/thread_header.png');"><?php if (($row[date] == null) || ($row[date] == "0")){ echo "N/A"; } elseif ($row[date] == $today){ echo "Today"; } else { echo "$row[date]"; } ?>
+         <?php if (!$user['admin'] == "1"){ echo "Thread"; } ?></th>
+         <th style="background-image:url('style/thread_header.png');"><?php if (($row['date'] == null) || ($row['date'] == "0")){ echo "N/A"; } elseif ($row['date'] == $today){ echo "Today"; } else { echo "$row[date]"; } ?>
           in
           <?php
           // EDIT 1.3.2 NEW CODE
@@ -105,7 +105,7 @@ myField.value += myValue;
            <?php
            $av = MYSQL_QUERY("SELECT * FROM `members` WHERE `username` = '$row[thread_author]'");
            $av = mysql_fetch_array($av);
-		   if ($av[avatar] == null){ echo "<img src='images/noav.png'><br />"; } else { 
+		   if ($av['avatar'] == null){ echo "<img src='images/noav.png'><br />"; } else { 
            echo "<img src='$av[avatar]' class='avatar'><br />";
            }
          ?>
@@ -121,7 +121,7 @@ myField.value += myValue;
          echo "<strong>Topics:</strong> $topics<br /><strong>Replies:</strong> $posts";
          ?>
          </td>
-         <td><?php echo nl2br_limit(stripslashes(convertbb($row[thread_content])),5); ?></td>
+         <td><?php echo nl2br_limit(stripslashes(convertbb($row['thread_content'])),5); ?></td>
          </tr>
          </table>
          <br /><br />
@@ -135,18 +135,18 @@ myField.value += myValue;
          <br /><br />
          <table id="forum" width="100%">
          <th style="background-image:url('style/reply_header.png');" width="100px;">
-                  <?php if ($user[admin] == "1"){ ?>
+                  <?php if ($user['admin'] == "1"){ ?>
          <a href="admin.php?deletereply&id=<?php echo "$row[reply_key]"; ?>"><img src="icons/delete.gif" border="0"></a>
          <a href="admin.php?list=edit&type=reply&reply=<?php echo "$row[reply_key]"; ?>"><img src="icons/edit_post.png" border="0"></a>
          <?php } ?>
          Reply</th>
-         <th style="background-image:url('style/reply_header.png');"><?php if ($row[date] == null){ echo "N/A"; } elseif ($row[date] == $today){ echo "Today"; } else { echo "$row[date]"; } ?></th>
+         <th style="background-image:url('style/reply_header.png');"><?php if ($row['date'] == null){ echo "N/A"; } elseif ($row['date'] == $today){ echo "Today"; } else { echo "$row[date]"; } ?></th>
          <tr>
          <td align="center">
            <?php
            $av = MYSQL_QUERY("SELECT * FROM `members` WHERE `username` = '$row[reply_author]'");
            $av = mysql_fetch_array($av);
-		   if ($av[avatar] == ""){ echo "<img src='images/noav.png'><br />"; } else {
+		   if ($av['avatar'] == ""){ echo "<img src='images/noav.png'><br />"; } else {
            echo "<img src='$av[avatar]' class='avatar'><br />";
            }
          ?>
@@ -160,7 +160,7 @@ myField.value += myValue;
          echo "Topics:</strong> $topics<br /><strong>Replies:</strong> $posts";
          ?>
          </td>
-         <td><?php echo nl2br_limit(stripslashes(convertbb($row[reply_content])),5); ?></td>
+         <td><?php echo nl2br_limit(convertbb(htmlspecialchars($row['reply_content'])),5); ?></td>
          </tr>
          </table>
          <?php } ?>
@@ -169,26 +169,29 @@ myField.value += myValue;
          $result = mysql_query("SELECT * FROM tinybb_threads WHERE thread_key ='".addslashes(htmlspecialchars($_GET['post']))."' LIMIT 1") or die("<h3><img src='icons/idea.gif'> Oops, an error?</h3>It seems an error has occured with the forum, contact the administrator to report this issue. (For documentation, MYSQL)<br /><br /><br /><br /><br /></h3>");
          while($row = mysql_fetch_array($result))  {
            // Version 1.3.2 Edit
-         if ($row[thread_lock] == "1"){ die("<br /><strong>Cannot post reply, the thread is locked.</strong>"); }
+         if ($row['thread_lock'] == "1"){ die("<br /><strong>Cannot post reply, the thread is locked.</strong>"); }
          }
 
          // End of edit
          ?>
-         <?php if ($_GET['do'] == "reply"){ ?>
+         <?php 
+         $do = (isset($_GET['do'])) ? $_GET['do'] : "";
+         
+         if ($do == "reply"){ ?>
          <?php if(($_POST['check']) == $_SESSION['check']) { ?>
 
                 <?php
                 // THE THREAD ID RANDOMIZER 
                 srand ((double) microtime( )*1000000); $random_number = rand(0,9999999999999);
-                $content = addslashes(htmlspecialchars($_POST[content]));
+                $content = mysql_real_escape_string($_POST['content']);
                 $author = "$user[username]";
-                $avatar = addslashes(htmlspecialchars($_POST[avatar]));
-                $thread = addslashes(htmlspecialchars($_POST[post]));
+                $avatar = addslashes(htmlspecialchars($_POST['avatar']));
+                $thread = addslashes(htmlspecialchars($_POST['post']));
                 $id = "$random_number";
                 $date = date("d-m-Y");
                 // To stop page refreshing
                 header("Location: ?page=thread&post=$thread#last");
-                if ($user[username] != null){
+                if ($user['username'] != null){
                 $sql = "INSERT INTO tinybb_replies
 			(
 				reply_content,
@@ -222,8 +225,8 @@ myField.value += myValue;
          $result = mysql_query("SELECT * FROM tinybb_threads WHERE thread_key ='".addslashes(htmlspecialchars($_GET['post']))."' LIMIT 1") or die("<h3><img src='icons/idea.gif'> Oops, an error?</h3>It seems an error has occured with the forum, contact the administrator to report this issue. (For documentation, MYSQL)<br /><br /><br /><br /><br /></h3>");
          while($row = mysql_fetch_array($result))  {
          ?>
-         <?php if ($user[username] == null){ } else { ?>
-         <?php if ($row[thread_lock] == "1"){ echo "<br /><div class='warning'>The thread is locked.</div>"; } else { ?>
+         <?php if ($user['username'] == null){ } else { ?>
+         <?php if ($row['thread_lock'] == "1"){ echo "<br /><div class='warning'>The thread is locked.</div>"; } else { ?>
          <br />
          <h2><img src="icons/edit.gif" border="0"> Reply</h2>
          <form action="?page=thread&do=reply" name="compose" method="POST">
